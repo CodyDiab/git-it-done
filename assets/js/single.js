@@ -1,3 +1,23 @@
+var repoNameEl = document.querySelector("#repo-name")
+//function to get repo infor from query peramiter
+getRepoName=function(){
+    var queryString = document.location.search;
+    var repoName = queryString.split("=")[1];
+   //check for repo name
+    if(repoName) {
+    getRepoIssues(repoName)
+
+    repoNameEl.textContent = repoName
+    // no repo name redirect to home
+    }else{
+        document.location.replace("./index.html")
+    }
+}
+
+
+
+
+
 var issueContainerEl = document.querySelector("#issues-container");
 
 var limitWarningEl = document.querySelector("#limit-warning")
@@ -18,6 +38,7 @@ var getRepoIssues = function(repo) {
             });
         } else {
             alert("there was a problem with your request!")
+            document.location.replace("./index.html")
         }
     })
 }
@@ -71,4 +92,4 @@ var displayWarning = function(repo) {
     limitWarningEl.appendChild(linkEl)
 
 }
-getRepoIssues("facebook/react")
+getRepoName()
