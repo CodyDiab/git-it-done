@@ -44,6 +44,37 @@ var getUserRepos = function(user) {
        alert("Unable to connect to GitHub");
    })
 };
+/// sort repos
+
+var getFeaturedRepos = function(language){
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+ fetch(apiUrl).then(function(response) {
+     if (response.ok) {
+         response.json().then(function(data){
+             displayRepos(data.items, language);
+            });
+     }else {
+         alert("Error: " + response.statusText);
+     }
+ });
+};
+
+////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // display HTTP request for specified items to user//
 var displayRepos = function(repos, searchTerm){
